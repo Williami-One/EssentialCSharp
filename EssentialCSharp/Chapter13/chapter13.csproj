@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="13.7.sequencediagram" />
+    <None Include="packages.config" />
     <None Include="Program_Main.sequencediagram" />
     <None Include="Program_Main_1.sequencediagram" />
     <None Include="Program_Main_2.sequencediagram" />
@@ -106,6 +107,10 @@
     <EmbeddedResource Include="Program_Main_2.sequencediagram.layout">
       <DependentUpon>Program_Main_2.sequencediagram</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

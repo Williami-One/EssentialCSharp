@@ -9,3 +9,6 @@
 
 # mstest test results
 TestResults
+/.vs
+/EssentialCSharp/.vs/EssentialCSharp5/v16/Server/sqlite3
+/EssentialCSharp/packages/Microsoft.DependencyValidation.Analyzers.0.10.0
