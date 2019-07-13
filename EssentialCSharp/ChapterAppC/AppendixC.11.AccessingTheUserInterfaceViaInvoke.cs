@@ -47,16 +47,26 @@
                 Thread.Sleep(100);
             }
 
-            if(InvokeRequired)
-            {
-                // Close cannot be called directly from 
-                // a non-UI thread.
-                Invoke(new MethodInvoker(Close));
-            }
-            else
-            {
-                Close();
-            }
+            //// 这块为 原书中的代码
+            ////if(InvokeRequired)
+            //{
+            //    // Close cannot be called directly from 
+            //    // a non-UI thread.
+            //    Invoke(new MethodInvoker(Close));
+            //}
+            //else
+            //{
+            //    Close();
+            //}
+
+            //// 因为已经知道不是在UI线程里，所以可以不用判断InvokeRequired
+            //// 直接用UI控件的 Invoke 或者 BeginInvoke
+            //// 形如：
+            ////  Invoke(new MethodInvoker(Close));
+            ////  Invoke((MethodInvoker)Close);
+            ////  Invoke((MethodInvoker)(() => Close()));
+            ////  Invoke(new MethodInvoker(() => Close()));
+            BeginInvoke(new MethodInvoker(() => Close()));
         }
 
         private void InitializeComponent()
