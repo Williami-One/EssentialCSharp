@@ -29,7 +29,7 @@
             List<string> urls = new List<string>()
             {
                 "www.habitat-spokane.org",
-                "www.partnersintl.org",
+                "www.partnersintl.org1",
                 "www.iassist.org",
                 "www.fh.org",
                 "www.worldvision.org"
@@ -50,11 +50,22 @@
 
             foreach(string url in urls)
             {
-                status = await func(url);
-                StatusLabel.Text =
-                    string.Format("{0}: {1} ({2})",
-                    url, status.ToString(),
-                    Thread.CurrentThread.ManagedThreadId);
+                try
+                {
+                    status = await func(url);
+                    StatusLabel.Text =
+                        string.Format("{0}: {1} ({2})",
+                        url, status.ToString(),
+                        Thread.CurrentThread.ManagedThreadId);
+                }
+                catch (Exception ex)
+                {
+                    StatusLabel.Text = 
+                        string.Format("{0}: {1} ({2})",
+                       url, ex.Message,
+                       Thread.CurrentThread.ManagedThreadId);
+                }
+                
             }
         }
 

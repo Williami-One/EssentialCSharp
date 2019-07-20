@@ -43,16 +43,19 @@
                         return true;
                     });
                 }
-                catch(WebException)
+                catch(WebException e)
                 {
+                    Console.WriteLine(e.Message);
                     // ...
                 }
-                catch(IOException)
+                catch(IOException e)
                 {
+                    Console.WriteLine(e.Message);
                     // ...
                 }
-                catch(NotSupportedException)
+                catch(NotSupportedException e)
                 {
+                    Console.WriteLine(e.Message);
                     // ...
                 }
             }

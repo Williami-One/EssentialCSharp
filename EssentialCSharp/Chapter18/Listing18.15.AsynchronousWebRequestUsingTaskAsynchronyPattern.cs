@@ -5,6 +5,7 @@
     using System.Net;
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Threading;
 
     public class Program
     {
@@ -16,21 +17,32 @@
                 WebRequest webRequest =
                     WebRequest.Create(url);
 
+                Console.WriteLine(string.Format("WebRequest.Create(url) in Thread {0}", Thread.CurrentThread.ManagedThreadId));
+
                 WebResponse response =
                     await webRequest.GetResponseAsync();
                 using(StreamReader reader =
                     new StreamReader(
                         response.GetResponseStream()))
                 {
+                    Console.WriteLine(string.Format("response.GetResponseStream() in Thread {0}", Thread.CurrentThread.ManagedThreadId));
+
                     string text =
                         await reader.ReadToEndAsync();
+
+                    Console.WriteLine(string.Format("after reader.ReadToEndAsync() in Thread {0}", Thread.CurrentThread.ManagedThreadId));
+
                     Console.WriteLine(
                         FormatBytes(text.Length));
+                    throw new WebException();
                 }
             }
-            catch(WebException)
+            catch(WebException ex)
             {
                 // ...
+                Console.WriteLine(string.Format("Exception Handle in Thread {0}", Thread.CurrentThread.ManagedThreadId));
+
+                Console.WriteLine(ex.Message);
             }
             catch(IOException)
             {
